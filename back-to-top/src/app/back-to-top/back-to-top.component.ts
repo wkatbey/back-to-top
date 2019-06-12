@@ -7,7 +7,7 @@ import { HostListener, Component, Input, OnInit } from '@angular/core';
 })
 export class BackToTopComponent implements OnInit {
 
-  @Input() positionToDisplayButton: number;
+  @Input() scrollPositionToDisplayButton: number;
   @Input() behavior: ScrollBehavior;
 
   coordinates: ScrollToOptions; 
@@ -30,7 +30,7 @@ export class BackToTopComponent implements OnInit {
     let bodyScrollTop = document.body.scrollTop;
 
     if (pageYOffset || documentScrollTop 
-        || bodyScrollTop > this.positionToDisplayButton) {
+        || bodyScrollTop > this.scrollPositionToDisplayButton) {
       this.showButton = true;
     }
     else {
