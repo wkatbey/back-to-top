@@ -1,7 +1,8 @@
 import { HostListener, Component, Input, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'back-to-top',
+  selector: 'app-back-to-top',
   templateUrl: './back-to-top.component.html',
   styleUrls: ['./back-to-top.component.scss']
 })
@@ -10,30 +11,29 @@ export class BackToTopComponent implements OnInit {
   @Input() scrollPositionToDisplayButton: number;
   @Input() behavior: ScrollBehavior;
 
-  coordinates: ScrollToOptions; 
+  coordinates: ScrollToOptions;
   showButton = false;
 
   constructor() { }
 
   ngOnInit() {
     this.coordinates = {
-      left: 0, 
-      top: 0, 
+      left: 0,
+      top: 0,
       behavior: this.behavior
     };
   }
 
-  @HostListener("window:scroll")
+  @HostListener('window:scroll')
   onWindowScroll() {
-    let pageYOffset = window.pageYOffset;
-    let documentScrollTop = document.documentElement.scrollTop;
-    let bodyScrollTop = document.body.scrollTop;
+    const pageYOffset = window.pageYOffset;
+    const documentScrollTop = document.documentElement.scrollTop;
+    const bodyScrollTop = document.body.scrollTop;
 
     if (pageYOffset || documentScrollTop 
         || bodyScrollTop > this.scrollPositionToDisplayButton) {
       this.showButton = true;
-    }
-    else {
+    } else {
       this.showButton = false;
     }
   }
